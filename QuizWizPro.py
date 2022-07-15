@@ -30,20 +30,56 @@ def main_Menu():
 
 #Student Login Menu
 def student_Menu ():
-    student_Login = input (
-    "1.Press 1 To Login\n"
-    "2.Press 2 to create a Student Account\n"
-    "3.Press 3 to Go Back\n""4.Press 4 to Exit Program\n")
-    if int(student_Login) == 2:
-        User.create_User()
+    #student_Login_Method =''
+    try: 
+        student_Login = input (
+        "1.Press 1 To Login\n"
+        "2.Press 2 to create a Student Account\n"
+        "3.Press 3 to Go Back\n""4.Press 4 to Exit Program\n")
+        if (student_Login) == '1':      
+            student_Login_Method()
+        elif (student_Login) == '2':
+            User.create_User()
+            print(student_Login_Method)
+    except:
+        print("You did not enter a valid selection")
 
-
-def instructor_Menu ():
+def instructor_Menu():
     student_Login = input (
     "1.Press 1 To Login\n"
     "2.Press 2 to create an Instructor Account\n"
     "3.Press 3 to Go Back\n""4.Press 4 to Exit Program\n")
 
+def student_Login_Method():
+    print("Student Login")
+    student_Email = input("Please Enter your Email Address\n")
+    student_Password = input("Please Enter your password\n")
+    valid_S_login = validate_Password (student_Email, student_Password)
+    if valid_S_login == True:
+        print("correct Email addy")
+    else:
+        print ("Incorrect login")
+
+def validate_Password(u_Name, p_word):
+    pass_W = u_Name
+    pw_word = p_word
+    con = sqlite3.connect('DataBase-QuizWizPro.db')
+    cur = con.cursor()
+    cur.execute(""" SELECT password FROM users WHERE email=? """, [pass_W])
+    p_result = cur.fetchone()
+    print(p_result)
+    print(pw_word)
+    pw_Result = p_result[0]
+    if pw_Result== pw_word :
+        return True
+    else :
+       return False 
+
+    #con.commit()
+
+
 #Driver
 main_Menu()
+
+#validate_Password ('MeggaDon@gmail.com','MEGGAdon890')
 

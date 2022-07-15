@@ -12,7 +12,7 @@ def create_Quiz():
     nameOfQuiz = input("Please Give this Quiz a Title Name\n")
 
 
-
+#quiz_A is short for "Quiz_Author"
 def verify_Quiz_Author(quiz_A):
     quiz_Author = quiz_A
     con = sqlite3.connect('DataBase-QuizWizPro.db')
@@ -23,7 +23,7 @@ def verify_Quiz_Author(quiz_A):
 
     cur.execute("""   SELECT id, fname, Lname, FROM users  WHERE email = '?';  """, (quiz_Author) )
     records = cur.fetchall
-    print (records)
+    print(records)
     con.commit()
 
 

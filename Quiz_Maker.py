@@ -63,4 +63,4 @@ def verify_Quiz_Author(quiz_A):
     
     #con.commit()
 
-create_Quiz()
+#create_Quiz()
